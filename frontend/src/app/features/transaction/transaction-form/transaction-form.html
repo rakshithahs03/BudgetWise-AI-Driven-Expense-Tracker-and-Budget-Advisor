@@ -1,0 +1,69 @@
+<app-alert
+  *ngIf="showAlert"
+  [message]="alertMessage"
+  [type]="alertType"
+  (close)="showAlert = false"
+></app-alert>
+
+<div class="form-container">
+  <h3>Add New Transaction</h3>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="date">Date</label>
+      <input type="date" id="date" [(ngModel)]="transaction.date" name="date" required>
+    </div>
+    <div>
+      <label for="type">Type</label>
+      <select id="type" [(ngModel)]="transaction.type" name="type" required>
+        @for (t of transactionTypes; track t) {
+          <option [value]="t">{{ t }}</option>
+        }
+      </select>
+    </div>
+    <div>
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" [(ngModel)]="transaction.amount" name="amount" required>
+    </div>
+
+    <div>
+      <label for="category">Category</label>
+      @if (isNewCategory) {
+        <input
+          type="text"
+          id="category"
+          [(ngModel)]="transaction.category"
+          name="category"
+          placeholder="Enter new category"
+          required
+        >
+        <button type="button" (click)="isNewCategory = false">
+          Select from list
+        </button>
+      } @else {
+        <select
+          id="category"
+          [(ngModel)]="transaction.category"
+          name="category"
+          required
+          (change)="onCategoryChange($event)"
+        >
+          <option value="" disabled selected>Select a category</option>
+          <option value="new">-- Create new category --</option>
+          @for (cat of categories; track cat) {
+            <option [value]="cat">{{ cat }}</option>
+          }
+        </select>
+      }
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <textarea id="description" [(ngModel)]="transaction.description" name="description"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">Add Transaction</button>
+      <button type="button" (click)="closeForm.emit()">Cancel</button>
+    </div>
+  </form>
+</div>

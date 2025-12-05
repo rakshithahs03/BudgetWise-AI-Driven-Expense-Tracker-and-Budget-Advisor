@@ -1,0 +1,53 @@
+<div class="hub-container">
+  <div class="page-header">
+    <h1>Analysis Hub</h1>
+  </div>
+
+  <div class="bento-grid">
+    <div class="bento-card large">
+      <h3>Last 6 Months Trend</h3>
+      <app-line-chart [data]="trendData"></app-line-chart>
+    </div>
+    <div class="bento-card medium top-categories">
+      <h3>Top 5 Spending Categories</h3>
+      <app-top-categories [categories]="topExpenseCategories"></app-top-categories>
+    </div>
+    <div class="bento-card medium savings-overview">
+      <h3>Savings Goal Progress</h3>
+      <app-savings-overview [goals]="savingsGoals"></app-savings-overview>
+    </div>
+
+    <div class="bento-card full-width">
+      <app-ai-suggestions-card [suggestions]="aiSuggestions" [loading]="aiSuggestionsLoading"></app-ai-suggestions-card>
+    </div>
+
+    <div class="bento-card full-width">
+      <div class="chart-grid-header">
+        <input type="month" [(ngModel)]="selectedMonth" (change)="onMonthChange()">
+      </div>
+      <div class="chart-grid">
+        <div class="bento-card medium heat-map">
+          <app-monthly-heatmap [year]="currentYear" [month]="currentMonth"></app-monthly-heatmap>
+        </div>
+        <div class="chart-container">
+          <h4>Monthly Savings by Category</h4>
+          <app-bar-chart [data]="savingsByCategory" [label]="'Savings'"></app-bar-chart>
+        </div>
+      </div>
+    </div>
+
+    <a routerLink="/analysis/details/expenses" class="bento-card nav-card">
+      <h3>Explore Expenses</h3>
+      <span>View Details &rarr;</span>
+    </a>
+    <a routerLink="/analysis/details/income" class="bento-card nav-card">
+      <h3>Explore Income</h3>
+      <span>View Details &rarr;</span>
+    </a>
+    <a routerLink="/analysis/details/savings" class="bento-card nav-card">
+      <h3>Explore Savings</h3>
+      <span>View Details &rarr;</span>
+    </a>
+
+  </div>
+</div>

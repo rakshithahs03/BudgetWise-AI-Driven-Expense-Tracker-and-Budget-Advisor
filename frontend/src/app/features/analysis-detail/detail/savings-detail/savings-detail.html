@@ -1,0 +1,25 @@
+<div class="savings-detail-container">
+  <div class="summary-card-row">
+    <div class="summary-card">
+      <h4>Total Saved This Month</h4>
+      <p>{{ savingsSummary?.totalSavedThisMonth | currency:'INR' }}</p>
+    </div>
+    <div class="summary-card">
+      <h4>Goals in Progress</h4>
+      <p>{{ savingsSummary?.goalsInProgress }}</p>
+    </div>
+    <div class="summary-card">
+      <h4>Goals Met</h4>
+      <p>{{ savingsSummary?.goalsMet }}</p>
+    </div>
+  </div>
+
+  <div class="bento-card">
+    <div class="card-header">
+      <h2>Savings Goal Progress</h2>
+    </div>
+    <div class="card-content">
+      <app-saving-goals [goals]="savingGoals" [showActions]="false"></app-saving-goals>
+    </div>
+  </div>
+</div>

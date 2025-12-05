@@ -1,0 +1,31 @@
+<div class="app-wrapper">
+  <app-nav-bar></app-nav-bar>
+  @if(isLoggedIn()){
+    <div class="animation-wrapper">
+      <ul>
+        <!-- <li>💰</li>
+        <li>💸</li>
+        <li>📈</li>
+        <li>💳</li>
+        <li>🪙</li>
+        <li>💵</li>
+        <li>🏦</li>
+        <li>💲</li>
+        <li>🧾</li>
+        <li>✨</li> -->
+      </ul>
+    </div>
+  }
+
+  <div class="app-container">
+    @if(isLoggedIn()){
+      <app-breadcrumb></app-breadcrumb>
+    }
+    <router-outlet></router-outlet>
+  </div>
+
+  @if(isLoggedIn()){
+    <app-chatbot></app-chatbot>
+  }
+
+  <app-footer></app-footer> </div>

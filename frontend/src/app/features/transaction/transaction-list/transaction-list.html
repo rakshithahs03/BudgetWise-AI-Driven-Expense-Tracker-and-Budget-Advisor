@@ -1,0 +1,116 @@
+
+
+<div class="transactions-container">
+  <app-alert
+    *ngIf="showAlert"
+    [message]="alertMessage"
+    [type]="alertType"
+    (close)="showAlert = false"
+  ></app-alert>
+
+
+  <div class="transactions-content">
+    <h2 class="transactions-heading">Transactions</h2>
+    <table class="transactions-table">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (t of transactions; track t.id) {
+          <tr>
+            <td>
+              @if (editingTransaction?.id === t.id) {
+                <input
+                  type="date"
+                  [ngModel]="editData.date | date:'yyyy-MM-dd'"
+                  (ngModelChange)="editData.date = $event"
+                  name="date"
+                />
+              } @else {
+                {{ t.date | date }}
+              }
+            </td>
+            <td>
+              @if (editingTransaction?.id === t.id) {
+                <select
+                  [ngModel]="editData.type"
+                  (ngModelChange)="editData.type = $event"
+                  name="type"
+                >
+                  <option value="INCOME">INCOME</option>
+                  <option value="EXPENSE">EXPENSE</option>
+                  <option value="SAVINGS">SAVINGS</option>
+                </select>
+              } @else {
+                {{ t.type }}
+              }
+            </td>
+            <td>
+              @if (editingTransaction?.id === t.id) {
+                <input
+                  type="text"
+                  [ngModel]="editData.category"
+                  (ngModelChange)="editData.category = $event"
+                  name="category"
+                />
+              } @else {
+                {{ t.category }}
+              }
+            </td>
+            <td>
+              @if (editingTransaction?.id === t.id) {
+                <input
+                  type="number"
+                  [ngModel]="editData.amount"
+                  (ngModelChange)="editData.amount = $event"
+                  name="amount"
+                />
+              } @else {
+                <span [ngClass]="{
+                  'income-amount': t.type === 'INCOME',
+                  'expense-amount': t.type === 'EXPENSE',
+                  'savings-amount': t.type === 'SAVINGS'
+                }">
+                  {{ t.type === 'INCOME' || 'SAVINGS' ? '+' : '-' }} {{ t.amount | currency:'INR' }}
+                </span>
+              }
+            </td>
+            <td>
+              @if (editingTransaction?.id === t.id) {
+                <input
+                  type="text"
+                  [ngModel]="editData.description"
+                  (ngModelChange)="editData.description = $event"
+                  name="description"
+                />
+              } @else {
+                {{ t.description }}
+              }
+            </td>
+            <td>
+              @if (editingTransaction?.id === t.id) {
+                <button (click)="handleSave()" class="save-btn btn-sm">Save</button>
+                <button (click)="handleCancel()" class="cancel-btn btn-sm">Cancel</button>
+              } @else {
+                <button (click)="handleEdit(t)" class="edit-btn btn-sm">Edit</button>
+                <button (click)="handleDelete(t.id)" class="delete-btn btn-sm">Delete</button>
+              }
+            </td>
+          </tr>
+        }
+        @empty {
+          <tr>
+            <td colspan="6" class="no-transactions">No transactions found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

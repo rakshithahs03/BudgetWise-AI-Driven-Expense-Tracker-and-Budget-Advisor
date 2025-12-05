@@ -1,0 +1,4 @@
+// This ensures the chart fills its container properly
+:host ::ng-deep .apexcharts-canvas {
+  width: 100% !important;
+}

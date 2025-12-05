@@ -1,0 +1,85 @@
+/* Color variables for consistency */
+:root {
+  --primary: 220, 90%, 56%;
+  --primary-glow: 220, 100%, 70%;
+  --foreground: #212529;
+  --muted-foreground: #6c757d;
+  --border: #dee2e6;
+  --card: #ffffff;
+  --muted: #f8f9fa;
+}
+
+.auth-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--muted);
+  padding: 2rem;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: var(--foreground);
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* ✅ This adds the space between form elements */
+    margin-bottom: 1.5rem;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      border-color: hsl(var(--primary));
+      box-shadow: 0 0 0 3px hsl(var(--primary) / 0.2);
+    }
+  }
+
+  button[type="submit"] {
+    padding: 0.75rem;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px hsl(var(--primary) / 0.3);
+  }
+
+  button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px hsl(var(--primary) / 0.4);
+  }
+
+  p {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--muted-foreground);
+  }
+
+  a {
+    color: hsl(var(--primary));
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: hsl(var(--primary-glow));
+      text-decoration: underline;
+    }
+  }
+}

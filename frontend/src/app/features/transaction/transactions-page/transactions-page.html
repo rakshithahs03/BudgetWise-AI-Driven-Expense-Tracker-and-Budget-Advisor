@@ -1,0 +1,66 @@
+<div class="transactions-page-container">
+  <div class="page-header">
+    <h1>All Transactions</h1>
+    <div class="page-actions">
+      <input type="file" #fileInput hidden (change)="onFileChange($event)" accept=".xlsx, .xls">
+
+      <button class="secondary-btn export-excel-btn" (click)="exportToExcel()">Export to Excel</button>
+      <button class="secondary-btn export-pdf-btn" (click)="exportToPdf()">Export to PDF</button>
+      <button class="primary-btn  import-excel-btn" (click)="fileInput.click()">Import Transactions</button>
+
+      <a routerLink="/dashboard" class="back-link">&larr; Back to Dashboard</a>
+    </div>
+  </div>
+
+  <div class="filter-container">
+    <div class="filter-group">
+      <label>Type</label>
+      <select [(ngModel)]="filters.type">
+        <option value="">All</option>
+        <option value="INCOME">Income</option>
+        <option value="EXPENSE">Expense</option>
+        <option value="SAVINGS">Savings</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Category</label>
+      <select [(ngModel)]="filters.category">
+        <option value="">All Categories</option>
+        @for(category of categories; track category) {
+          <option [value]="category">{{ category }}</option>
+        }
+      </select>
+    </div>
+    <div class="filter-group month-filter">
+      <label>Month</label>
+      <select [(ngModel)]="filters.selectedMonth" (change)="onMonthChange()">
+        <option value="">Custom Range</option>
+        @for(month of months; track month.value) {
+          <option [value]="month.value">{{ month.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="filter-group date-filter">
+      <label>Start Date</label>
+      <input type="date" [(ngModel)]="filters.startDate">
+    </div>
+    <div class="filter-group date-filter">
+      <label>End Date</label>
+      <input type="date" [(ngModel)]="filters.endDate">
+    </div>
+    <div class="filter-actions">
+      <button class="primary-btn" (click)="applyFilters()">Apply</button>
+      <button class="secondary-btn" (click)="clearFilters()">Clear</button>
+    </div>
+  </div>
+
+  <div class="transactions-page-container">
+    <div class="transaction-list-card">
+      <app-transactions-list
+        [transactions]="transactions"
+        (transactionUpdated)="refreshData()"
+        (transactionDeleted)="refreshData()">
+      </app-transactions-list>
+    </div>
+  </div>
+</div>

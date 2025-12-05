@@ -1,0 +1,46 @@
+// ✅ Using the same consistent styling as the other pages
+.savings-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bento-card, .summary-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.summary-card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+
+  .summary-card {
+    text-align: center;
+    h4 {
+      font-size: 0.9rem;
+      color: #6c757d;
+      margin: 0 0 0.5rem;
+    }
+    p {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+}
+
+.card-header {
+  h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e9ecef;
+  }
+}
+
+.card-content {
+  padding-top: 1rem;
+}

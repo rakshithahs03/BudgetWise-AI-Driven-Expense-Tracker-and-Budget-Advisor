@@ -1,0 +1,22 @@
+// Add this to create space between buttons
+td:last-child {
+  display: flex;
+  gap: 0.5rem; // Adds space between items
+}
+
+.income-amount {
+  color: var(--success-color, #28a745); // Green for income
+  font-weight: 600;
+}
+
+.expense-amount {
+  color: var(--danger-color, #dc3545); // Red for expense
+  font-weight: 600;
+}
+
+.savings-amount {
+  color: var(--neutral-color, #7293d7);
+  font-weight: 600;
+}
+
+

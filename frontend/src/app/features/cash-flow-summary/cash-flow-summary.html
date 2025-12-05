@@ -1,0 +1,20 @@
+@if(cashFlowSummary) {
+  <div class="cash-flow-container">
+    <div class="flow-item income">
+      <span class="label">Income</span>
+      <span class="amount">{{ cashFlowSummary.monthlyIncome | currency:'INR' }}</span>
+    </div>
+    <div class="operator">-</div>
+    <div class="flow-item expense">
+      <span class="label">Spent</span>
+      <span class="amount">{{ cashFlowSummary.totalExpenses | currency:'INR' }}</span>
+    </div>
+    <div class="operator">=</div>
+    <div class="flow-item remaining" [class.negative]="cashFlowSummary.moneyLeftToSpend < 0">
+      <span class="label">Money Left to Spend</span>
+      <span class="amount">{{ cashFlowSummary.moneyLeftToSpend | currency:'INR' }}</span>
+    </div>
+  </div>
+} @else {
+  <p>Loading cash flow summary...</p>
+}

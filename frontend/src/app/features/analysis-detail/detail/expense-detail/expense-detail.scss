@@ -1,0 +1,200 @@
+.expense-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bento-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+
+  h3,
+  h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.75rem;
+  }
+}
+
+.summary-card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+
+  .summary-card {
+    @extend .bento-card;
+    text-align: center;
+
+    h4 {
+      font-size: 0.9rem;
+      color: #6c757d;
+      border: none;
+      padding-bottom: 0;
+    }
+
+    p {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+
+  .chart-container {
+    display: flex;
+
+    .main-chart {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-details {
+      flex: 1;
+      border-left: 1px solid #e9ecef;
+      padding-left: 1.5rem;
+      margin-left: 1.5rem;
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+
+      .details-prompt {
+        color: #6c757d;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .details-content.active {
+        .category-name {
+          display: block;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #007bff;
+          margin-bottom: 1rem;
+        }
+
+        .details-row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+          font-size: 0.9rem;
+
+          .amount {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+.trend-row {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1.5rem;
+
+  .category-selector {
+    .trend-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e9ecef;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+
+      h3 {
+        border: none;
+        padding: 0;
+        margin: 0;
+        font-size: 1.1rem;
+      }
+    }
+
+    .category-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem; // Adds space between the buttons
+      padding-top: 0.5rem;
+    }
+
+    // ✅ NEW STYLES FOR THE CATEGORY BUTTONS
+    .category-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid #dee2e6;
+      border-radius: 20px; // Pill shape
+      background-color: #f8f9fa;
+      color: #495057;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background-color: #e9ecef;
+        border-color: #adb5bd;
+      }
+
+      &.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+        box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+      }
+    }
+  }
+
+  .line-chart-container {
+    padding: 1.5rem;
+    min-height: 100%; // You can adjust this value to make the chart taller
+
+    app-line-chart {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.chart-switcher {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  button {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+    transition: all 0.2s ease-in-out;
+
+    &.active {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+
+    &:hover:not(.active) {
+      background-color: #e9ecef;
+    }
+  }
+}

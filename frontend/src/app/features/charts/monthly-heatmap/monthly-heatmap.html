@@ -1,0 +1,12 @@
+@if(chartSeries.length > 0) {
+  <apx-chart
+    [series]="chartSeries"
+    [chart]="chartOptions.chart"
+    [plotOptions]="chartOptions.plotOptions"
+    [dataLabels]="chartOptions.dataLabels"
+    [stroke]="chartOptions.stroke"
+    [title]="chartOptions.title"
+  ></apx-chart>
+} @else {
+  <p>Loading heatmap data...</p>
+}

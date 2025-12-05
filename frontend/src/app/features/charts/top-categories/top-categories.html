@@ -1,0 +1,14 @@
+<div class="top-categories-container">
+  @if(categories.length > 0) {
+    <ul>
+      @for(category of categories; track category.category) {
+        <li>
+          <span class="category-name">{{ category.category }}</span>
+          <span class="category-amount">{{ category.totalAmount | currency:'INR' }}</span>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p>No spending data for this month.</p>
+  }
+</div>

@@ -1,0 +1,67 @@
+<app-alert
+  *ngIf="showAlert"
+  [message]="alertMessage"
+  [type]="alertType"
+  (close)="showAlert = false"
+></app-alert>
+
+<div class="profile-container">
+  <h1>Your Profile</h1>
+
+  <div class="profile-card">
+    <h2>User Details</h2>
+    <form (ngSubmit)="updateUserDetails()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" [(ngModel)]="details.firstName" name="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" [(ngModel)]="details.lastName" name="lastName">
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" [(ngModel)]="details.username" name="username">
+      </div>
+      <button type="submit">Update User Details</button>
+    </form>
+  </div>
+
+  <div class="profile-card">
+    <h2>Financial Profile</h2>
+    <form (ngSubmit)="updateProfileDetails()">
+      <div class="form-group">
+        <label for="income">Monthly Income</label>
+        <input type="number" id="income" [(ngModel)]="details.income" name="income">
+      </div>
+      <div class="form-group">
+        <label for="savings">Current Savings</label>
+        <input type="number" id="savings" [(ngModel)]="details.savings" name="savings">
+      </div>
+      <div class="form-group">
+        <label for="targetExpenses">Target Expenses</label>
+        <input type="number" id="targetExpenses" [(ngModel)]="details.targetExpenses" name="targetExpenses">
+      </div>
+      <button type="submit">Update Financial Profile</button>
+    </form>
+  </div>
+
+  <div class="profile-card">
+    <h2>Change Password</h2>
+    <form (ngSubmit)="changePassword()">
+      <div class="form-group">
+        <label for="currentPassword">Current Password</label>
+        <input type="password" id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" required>
+      </div>
+      <div class="form-group">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm New Password</label>
+        <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+      </div>
+      <button type="submit">Change Password</button>
+    </form>
+  </div>
+</div>

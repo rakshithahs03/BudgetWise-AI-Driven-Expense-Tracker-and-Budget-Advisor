@@ -1,0 +1,54 @@
+<div class="budget-tracker-container">
+  <div class="section-header">
+    <h3>Budget Tracker</h3>
+    <button (click)="onAddBudget()">Add New</button>
+  </div>
+  @if (isBudgetFormVisible) {
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="isBudgetFormVisible = false">&times;</span>
+        <app-budget-form (budgetAdded)="onBudgetAdded($event)" (closeForm)="isBudgetFormVisible = false"></app-budget-form>
+      </div>
+    </div>
+  }
+  @if (budgets.length === 0) {
+    <p class="empty-state">No budgets found. Set a budget today!</p>
+  } @else {
+    @for (budget of budgets; track budget.id) {
+      <div class="budget-card">
+        @if (editingBudget?.id === budget.id) {
+          <div class="edit-form-container">
+            <input type="text" [(ngModel)]="editData.category" name="category" placeholder="Category" required />
+            <input type="number" [(ngModel)]="editData.limitAmount" name="limitAmount" placeholder="Amount" required />
+            <div class="edit-actions">
+              <button class="save-btn btn-sm" (click)="handleSave()">Save</button>
+              <button class="cancel-btn btn-sm" (click)="handleCancel()">Cancel</button>
+            </div>
+          </div>
+        } @else {
+          <div class="budget-header">
+            <div class="category-header">
+              <h4>{{ budget.category }}</h4>
+              <button class="add-btn" (click)="onAddTransaction(budget.category)" title="Add transaction for {{ budget.category }}">+</button>
+            </div>
+            <span class="budget-amount">{{ budget.spentAmount | currency:'INR' }} / {{ budget.limitAmount | currency:'INR' }}</span>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              [ngClass]="{'over-budget': budget.spentAmount > budget.limitAmount}"
+              [style.width.%]="(budget.spentAmount / budget.limitAmount) * 100">
+            </div>
+          </div>
+          <div class="budget-footer">
+            <span>{{ (budget.spentAmount / budget.limitAmount) | percent }} spent</span>
+            <div class="actions-group">
+              <button class="edit-btn btn-sm" (click)="handleEdit(budget)">Edit</button>
+              <button class="delete-btn btn-sm" (click)="handleDelete(budget.id)">Delete</button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,105 @@
+.saving-goals-container {
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    text-align: center;
+    margin: 0;
+  }
+
+  .goal-card {
+    background: #f1f7fe;
+    border: 1px solid #cce5ff;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .goal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    h4 {
+      margin: 0;
+      color: #007bff;
+    }
+    .goal-amount {
+      font-weight: 600;
+      color: #343a40;
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .add-btn {
+      background-color: #e9f5e9;
+      color: #28a745;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      line-height: 1;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #d4edda;
+      }
+    }
+  }
+
+  .progress-bar {
+    background-color: #e9ecef;
+    border-radius: 0.25rem;
+    height: 10px;
+    .progress-fill {
+      height: 100%;
+      background-color: #28a745;
+      border-radius: 0.25rem;
+      transition: width 0.3s ease;
+    }
+  }
+
+  .goal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; // Helps vertically align the text and buttons
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-top: 0.5rem;
+
+    // ✅ Add this to create space between the buttons
+    .actions-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+
+
+  .empty-state {
+    text-align: center;
+    color: #6c757d;
+    padding: 2rem;
+  }
+  .error-alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px 16px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,19 @@
+<div class="savings-overview-container">
+  @if(goals.length > 0) {
+    <ul>
+      @for(goal of goals.slice(0, 3); track goal.id) {
+        <li>
+          <div class="goal-info">
+            <span class="goal-name">{{ goal.category }}</span>
+            <span class="goal-amount">{{ goal.savedAmount | currency:'INR' }} / {{ goal.targetAmount | currency:'INR' }}</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="(goal.savedAmount / goal.targetAmount) * 100"></div>
+          </div>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p>No savings goals set yet.</p>
+  }
+</div>

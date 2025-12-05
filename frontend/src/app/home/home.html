@@ -1,0 +1,108 @@
+<div class="homepage-wrapper">
+
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Master Your Money with <span class="gradient-text">AI-Powered</span> Insights
+          </h1>
+          <p class="hero-description">
+            Take control of your financial future with BudgetWise's intelligent expense tracking,
+            personalized budgeting advice, and community-driven financial tips. Let AI guide you
+            towards better money management decisions.
+          </p>
+          <div class="hero-buttons">
+            @if(loggedIn()){
+              <a routerLink="/dashboard" class="btn-hero-primary">Go to Dashboard</a>
+            } @else {
+              <a routerLink="/auth/register" class="btn-hero-primary">Start Now</a>
+            }
+
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="image-container">
+            <img ngSrc="/hero-dashboard.jpg" alt="BudgetWise Dashboard" height="360" width="639"/>
+            <div class="image-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="features-container">
+      <div class="features-header">
+        <h2 class="features-title">Why Choose BudgetWise?</h2>
+        <p class="features-description">
+          Experience the future of personal finance management with AI-driven insights,
+          smart automation, and community support.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="card-header">
+            <div class="card-icon primary">🧠</div>
+            <h3 class="card-title">AI-Powered Analytics</h3>
+            <p class="card-description">
+              Get personalized financial insights and recommendations powered by advanced machine learning algorithms.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-header">
+            <div class="card-icon success">📈</div>
+            <h3 class="card-title">Smart Expense Tracking</h3>
+            <p class="card-description">
+              Automatically categorize transactions and identify spending patterns to help you make better financial decisions.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-header">
+            <div class="card-icon accent">🎯</div>
+            <h3 class="card-title">Goal Setting & Tracking</h3>
+            <p class="card-description">
+              Set financial goals and track your progress with intelligent milestones and achievement notifications.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-header">
+            <div class="card-icon info">📊</div>
+            <h3 class="card-title">Advanced Reporting</h3>
+            <p class="card-description">
+              Generate comprehensive financial reports with beautiful visualizations and actionable insights.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-header">
+            <div class="card-icon warning">👥</div>
+            <h3 class="card-title">Community Tips</h3>
+            <p class="card-description">
+              Connect with a community of financially savvy users and share budgeting tips and strategies.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-header">
+            <div class="card-icon success">💰</div>
+            <h3 class="card-title">Budget Optimization</h3>
+            <p class="card-description">
+              Receive AI-generated budget recommendations tailored to your spending habits and financial goals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

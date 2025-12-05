@@ -1,0 +1,41 @@
+<div class="form-container">
+  <h3>Add New Budget</h3>
+  <form (ngSubmit)="onSubmit()">
+    @if (errorMessage) {
+      <div class="error-alert">
+        {{ errorMessage }}
+      </div>
+    }
+    <div>
+      <label for="category">Category</label>
+      @if (isNewCategory) {
+        <input type="text" id="category" [(ngModel)]="budget.category" name="category" placeholder="Enter new category" required>
+        <button type="button" (click)="isNewCategory = false">Select from list</button>
+      } @else {
+        <select id="category" [(ngModel)]="budget.category" name="category" required (change)="onCategoryChange($event)">
+          <option value="" disabled selected>Select a category</option>
+          <option value="new">-- Create new category --</option>
+          @for (cat of categories; track cat) {
+            <option [value]="cat">{{ cat }}</option>
+          }
+        </select>
+      }
+    </div>
+    <div>
+      <label for="amount">Budget Amount</label>
+      <input type="number" id="amount" [(ngModel)]="budget.limitAmount" name="limitAmount" required>
+    </div>
+    <div>
+      <label for="startDate">Start Date</label>
+      <input type="date" id="startDate" [ngModel]="budget.startDate | date:'yyyy-MM-dd'" (ngModelChange)="budget.startDate = $event" name="startDate" required>
+    </div>
+    <div>
+      <label for="endDate">End Date</label>
+      <input type="date" id="endDate" [ngModel]="budget.endDate | date:'yyyy-MM-dd'" (ngModelChange)="budget.endDate = $event" name="endDate" required>
+    </div>
+    <div class="form-actions">
+      <button type="submit">Add Budget</button>
+      <button type="button" (click)="closeForm.emit()">Cancel</button>
+    </div>
+  </form>
+</div>

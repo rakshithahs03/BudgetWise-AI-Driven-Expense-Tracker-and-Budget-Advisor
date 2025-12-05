@@ -1,0 +1,46 @@
+.cash-flow-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+  }
+
+  .amount {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}
+
+.income .amount {
+  color: #28a745; // Green for income
+}
+
+.expense .amount {
+  color: #dc3545; // Red for expenses
+}
+
+.remaining .amount {
+  color: #007bff; // Blue for remaining
+  &.negative {
+    color: #dc3545; // Red if negative
+  }
+}
+
+.operator {
+  font-size: 2rem;
+  color: #6c757d;
+}

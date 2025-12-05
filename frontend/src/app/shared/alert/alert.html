@@ -1,0 +1,6 @@
+<div class="alert-overlay">
+  <div class="alert-box" [ngClass]="'alert-' + type">
+    <p>{{ message }}</p>
+    <button (click)="onClose()" class="close-btn">&times;</button>
+  </div>
+</div>

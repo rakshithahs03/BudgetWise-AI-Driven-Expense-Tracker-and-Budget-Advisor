@@ -1,0 +1,52 @@
+<app-alert
+  *ngIf="showAlert"
+  [message]="alertMessage"
+  [type]="alertType"
+  (close)="showAlert = false"
+></app-alert>
+
+<div class="post-detail-container">
+  <div class="page-header">
+    <a routerLink="/forum" class="back-link">&larr; Back to Forum</a>
+  </div>
+
+  @if(isLoading) {
+    <p>Loading post...</p>
+  } @else if(post) {
+    <div class="post-card">
+      <h1 class="post-title">{{ post.title }}</h1>
+      <div class="post-meta">
+        <span>By: <strong>{{ post.author.username }}</strong></span>
+        <span>on {{ post.createdAt | date:'fullDate' }}</span>
+      </div>
+      <p class="post-content">{{ post.content }}</p>
+    </div>
+
+    <div class="comments-section">
+      <h3>Comments ({{ post.comments.length }})</h3>
+
+      <div class="comment-form-card">
+        <form (ngSubmit)="onAddComment()">
+          <textarea [(ngModel)]="newCommentContent" name="comment" placeholder="Write a comment..." rows="3"></textarea>
+          <button type="submit">Post Comment</button>
+        </form>
+      </div>
+
+      <div class="comments-list">
+        @for(comment of post.comments; track comment.id) {
+          <div class="comment-card">
+            <p class="comment-content">{{ comment.content }}</p>
+            <div class="comment-meta">
+              <span><strong>{{ comment.author.username }}</strong></span>
+              <span>{{ comment.createdAt | date:'short' }}</span>
+            </div>
+          </div>
+        } @empty {
+          <p>No comments yet. Be the first to reply!</p>
+        }
+      </div>
+    </div>
+  } @else {
+    <p>Post not found.</p>
+  }
+</div>

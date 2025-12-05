@@ -1,0 +1,42 @@
+<div class="income-detail-container">
+  <div class="summary-card-row">
+    <div class="summary-card">
+      <h4>Total Income This Month</h4>
+      <p>{{ incomeSummary?.totalIncomeThisMonth | currency:'INR' }}</p>
+    </div>
+    <div class="summary-card">
+      <h4>Highest Income Source</h4>
+      <p>{{ incomeSummary?.highestIncomeCategory || 'N/A' }}</p>
+    </div>
+  </div>
+
+  <div class="bento-card chart-section">
+    <div class="main-chart">
+      <div class="chart-switcher">
+        <button (click)="selectChartType('pie')" [class.active]="selectedChartType === 'pie'">Pie</button>
+        <button (click)="selectChartType('bar')" [class.active]="selectedChartType === 'bar'">Bar</button>
+      </div>
+      @if (selectedChartType === 'pie') {
+        <app-pie-chart [data]="incomeByCategory" (categoryClicked)="onCategorySelected($event)"></app-pie-chart>
+      } @else {
+        <app-bar-chart [data]="incomeByCategory" [label]="'Income'" (categoryClicked)="onCategorySelected($event)"></app-bar-chart>
+      }
+    </div>
+    <div class="category-details">
+      <h4>Category Details</h4>
+      @if(selectedIncomeCategorySummary) {
+        <div class="details-content active">
+          <span class="category-name">{{ selectedIncomeCategorySummary.highestIncomeCategory }}</span>
+          <div class="details-row">
+            <span>Total Income:</span>
+            <span class="amount">{{ selectedIncomeCategorySummary.totalIncomeThisMonth | currency:'INR' }}</span>
+          </div>
+        </div>
+      } @else {
+        <div class="details-prompt">
+          <p>Click a category on a chart for more details.</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

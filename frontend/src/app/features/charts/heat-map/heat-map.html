@@ -1,0 +1,11 @@
+@if(heatMapSeries.length > 0) {
+  <apx-chart
+    [series]="heatMapSeries"
+    [chart]="heatMapOptions.chart"
+    [plotOptions]="heatMapOptions.plotOptions"
+    [dataLabels]="heatMapOptions.dataLabels"
+    [title]="heatMapOptions.title"
+  ></apx-chart>
+} @else {
+  <p>No spending this month to display in the heat map.</p>
+}

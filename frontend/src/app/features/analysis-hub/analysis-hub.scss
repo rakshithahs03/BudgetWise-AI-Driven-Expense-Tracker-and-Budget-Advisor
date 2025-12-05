@@ -1,0 +1,134 @@
+.hub-container {
+  padding: 2rem;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+// Bento Grid Styles
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: 1.5rem;
+}
+
+.bento-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+}
+
+// Define the size and position of each card
+.bento-card.large {
+  grid-column: 1 / 3;
+  grid-row: span 2;
+}
+.bento-card.top-categories {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+.bento-card.savings-overview {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+.bento-card.full-width {
+  grid-column: 1 / -1; // Span all columns
+}
+
+.nav-card {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+  justify-content: space-between;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+  span {
+    font-weight: 600;
+    color: #007bff;
+    align-self: flex-end;
+  }
+}
+
+// Styles for the new chart grid inside the full-width card
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  height: 350px;
+}
+
+.chart-grid-header {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  h4 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  // This ensures the chart fills the container's height
+  app-pie-chart, apx-chart {
+    flex-grow: 1;
+  }
+}
+
+.bento-card.large {
+  grid-column: 1 / 3;
+  grid-row: span 2;
+
+  app-line-chart {
+    flex-grow: 1; // This allows the chart to fill the remaining vertical space
+  }
+}
+
+// Style override for the ApexCharts heat map to ensure it fits
+:host ::ng-deep .apexcharts-canvas {
+  width: 100% !important;
+}
+
+.bento-card.medium.heat-map {
+  app-monthly-heatmap {
+    flex-grow: 1; /* Allows the heatmap to fill the vertical space */
+    display: flex; /* Ensures the child element can also be sized correctly */
+    flex-direction: column;
+  }
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  h4 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  // This ensures the chart fills the container's height
+  app-pie-chart, apx-chart, app-bar-chart {
+    flex-grow: 1;
+  }
+}
+
+.bento-card.ai-suggestions {
+  grid-column: 1 / 2;
+}

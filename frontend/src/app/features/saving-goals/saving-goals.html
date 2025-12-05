@@ -1,0 +1,58 @@
+<div class="saving-goals-container">
+  <div class="section-header">
+    <h3>Savings Goals</h3>
+    <button (click)="onAddGoal()">Add New</button>
+  </div>
+  @if (isGoalFormVisible) {
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="isGoalFormVisible = false">&times;</span>
+        <app-saving-goal-form (goalAdded)="onGoalAdded($event)" (closeForm)="isGoalFormVisible = false"></app-saving-goal-form>
+      </div>
+    </div>
+  }
+  @if (savingGoals.length === 0) {
+    <p class="empty-state">No savings found. Set a goal today!</p>
+  } @else {
+    @for (goal of savingGoals; track goal.id) {
+      <div class="goal-card">
+        @if (editingGoal?.id === goal.id) {
+        <div class="edit-form-container">
+          @if (errorMessage) {
+            <div class="error-alert">
+              {{ errorMessage }}
+            </div>
+          }
+          <input type="text" [(ngModel)]="editData.category" name="category" placeholder="Category" required />
+          <input type="number" [(ngModel)]="editData.targetAmount" name="targetAmount" placeholder="Target Amount" required />
+          <input type="number" [(ngModel)]="editData.savedAmount" name="savedAmount" placeholder="Saved Amount" required />
+          <input type="date" [(ngModel)]="editData.deadline" name="deadline" required />
+          <div class="edit-actions">
+            <button class="save-btn btn-sm" (click)="handleSave()">Save</button>
+            <button class="cancel-btn btn-sm" (click)="handleCancel()">Cancel</button>
+          </div>
+        </div>
+      } @else {
+          <div class="goal-header">
+            <div class="category-header">
+              <h4>{{ goal.category }}</h4>
+              <button class="add-btn" (click)="onAddTransaction(goal.category)" title="Add transaction for {{ goal.category }}">+</button>
+            </div>
+            <span class="goal-amount">{{ goal.savedAmount | currency:'INR' }} / {{ goal.targetAmount | currency:'INR' }}</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="(goal.savedAmount / goal.targetAmount) * 100"></div>
+          </div>
+          <div class="goal-footer">
+            <span>Deadline: {{ goal.deadline | date }}</span>
+            <div class="actions-group">
+              <span>{{ (goal.savedAmount / goal.targetAmount) | percent }} achieved</span>
+              <button class="edit-btn btn-sm" (click)="handleEdit(goal)">Edit</button>
+              <button class="delete-btn btn-sm" (click)="handleDelete(goal.id)">Delete</button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</div>

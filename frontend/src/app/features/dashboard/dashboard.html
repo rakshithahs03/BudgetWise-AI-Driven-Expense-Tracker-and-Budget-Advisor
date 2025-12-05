@@ -1,0 +1,101 @@
+<div class="dashboard-container">
+  @if (loading) {
+    <p>Loading user profile...</p>
+  } @else if (userProfile) {
+    <div class="profile-section">
+      <h2>Welcome, {{ firstname | titlecase}}</h2>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="grid-item cash-summary">
+        <app-cash-flow-summary></app-cash-flow-summary>
+      </div>
+
+      <a routerLink="/analysis/details/expenses" class="grid-item card-link total-income">
+        <div class="card">
+          <h3>Monthly Spend</h3>
+          <p class="spend-tracker">
+            <span>{{ userProfile.totalSpendThisMonth | currency:'INR' }}</span>
+            <span class="target">/ {{ userProfile.targetExpenses | currency:'INR' }}</span>
+          </p>
+          <span class="card-footer">View Details &rarr;</span>
+        </div>
+      </a>
+
+      <a routerLink="/analysis/details/savings" class="grid-item card-link monthly-spend ">
+        <div class="card">
+          <h3>Total Savings</h3>
+          <p>{{ userProfile.savings | currency:'INR' }}</p>
+          <span class="card-footer">View Details &rarr;</span>
+        </div>
+      </a>
+
+      <a routerLink="/analysis" class="grid-item card-link analysis-hub">
+        <div class="card">
+          <div class="analysis-hub-header">
+            <h3>Analysis Hub</h3>
+            <p class="analysis-icon">📊</p>
+          </div>
+          <div class="analysis-hub-content">
+            <p class="hub-description">
+              Dive deep into your finances. Visualize trends and understand your spending habits.
+            </p>
+          </div>
+          <span class="card-footer">Explore Insights &rarr;</span>
+        </div>
+      </a>
+    </div>
+  }
+
+  <div class="dashboard-bottom-sections">
+  <div class="section-half">
+    <app-budget-tracker
+      #budgetTracker
+      (budgetDeleted)="refreshAllData()"
+      (budgetUpdated)="refreshAllData()"
+      (addTransactionForCategory)="onAddTransactionForCategory($event)">
+    </app-budget-tracker>
+  </div>
+  <div class="section-half">
+    <app-saving-goals
+      #savingGoalsTracker
+      (goalUpdated)="refreshAllData()"
+      (goalDeleted)="refreshAllData()"
+      (addTransactionForCategory)="onAddTransactionForCategory($event)">
+    </app-saving-goals>
+  </div>
+</div>
+
+  @if (isFormVisible) {
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="isFormVisible = false">&times;</span>
+        <app-transaction-form
+          [prefilledCategory]="prefilledCategory"
+          [prefilledType]="prefilledType" (transactionAdded)="onTransactionAdded($event)"
+          (closeForm)="isFormVisible = false">
+        </app-transaction-form>
+      </div>
+    </div>
+  }
+
+  <div class="transactions-section">
+    <div class="transactions-header">
+      <h3>Recent Transactions</h3>
+      <div class="header-actions">
+        <button (click)="onAddTransaction()">Add New Transaction</button>
+      </div>
+    </div>
+
+    <app-transactions-list
+      [transactions]="transactions"
+      (transactionUpdated)="refreshAllData()"
+      (transactionDeleted)="refreshAllData()"
+    >
+    </app-transactions-list>
+
+    <div class="section-footer">
+      <a routerLink="/transactions" class="view-all-link">View All Transactions &rarr;</a>
+    </div>
+  </div>
+</div>

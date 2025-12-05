@@ -1,0 +1,19 @@
+<div class="ai-suggestions-container">
+  <h3>AI Financial Tips</h3>
+  @if(loading) {
+    <div class="loading-container">
+      <div class="loading-icon"></div>
+      <p>BudgetWise is thinking...</p>
+    </div>
+  } @else {
+    @if(suggestions.length > 0) {
+      <ul>
+        @for(suggestion of suggestions; track suggestion) {
+          <li>{{ suggestion }}</li>
+        }
+      </ul>
+    } @else {
+      <p>No suggestions available at this time.</p>
+    }
+  }
+</div>
